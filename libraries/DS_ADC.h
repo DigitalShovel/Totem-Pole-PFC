@@ -36,6 +36,13 @@ extern "C" {
 #define CR1_SGLDMEN_MASK                        (uint32_t)(0x01UL << 5) 
 #define CR1_CNTDMEN_MASK                        (uint32_t)(0x01UL << 6) 
 
+/* Status Register Mask */
+#define ST_PMDF_MASK                            (uint32_t)(0x01UL) 
+#define ST_TRGF_MASK                            (uint32_t)(0x01UL << 1) 
+#define ST_SNGF_MASK                            (uint32_t)(0x01UL << 2) 
+#define ST_CNTF_MASK                            (uint32_t)(0x01UL << 3) 
+#define ST_ADBF_MASK                            (uint32_t)(0x01UL << 7) 
+
 /* Conversion Clock Setting Register Mask */
 #define CLK_VADCLK_MASK                         (uint32_t)(0x07UL)
 #define CLK_EXAZ0_MASK                          (uint32_t)(0x0FUL << 3)
@@ -127,6 +134,22 @@ extern "C" {
 #define CR1_CNTDMEN_DISABLE(obj)                ((obj)->CR1 = (uint32_t)(((obj)->CR1 & ~CR1_CNTDMEN_MASK) | (0x00UL << 6)))
 #define CR1_CNTDMEN_ENABLE(obj)                 ((obj)->CR1 = (uint32_t)(((obj)->CR1 & ~CR1_CNTDMEN_MASK) | (0x01UL << 6)))
 
+/* Status Register Mask */
+#define ST_PMDF_STOP(obj)                       ((obj)->ST=(unit32_t)(((obj)->ST & ~ST_PMDF_MASK) | 0x00UL))
+#define ST_PMDF_EXECUTING(obj)                  ((obj)->ST=(unit32_t)(((obj)->ST & ~ST_PMDF_MASK) | 0x01UL))
+
+#define ST_TRGF_STOP(obj)                       ((obj)->ST=(unit32_t)(((obj)->ST & ~ST_PMDF_MASK) | (0x00UL << 1)))
+#define ST_TRGF_EXECUTING(obj)                  ((obj)->ST=(unit32_t)(((obj)->ST & ~ST_PMDF_MASK) | (0x01UL << 1)))
+
+#define ST_SNGF_STOP(obj)                       ((obj)->ST=(unit32_t)(((obj)->ST & ~ST_PMDF_MASK) | (0x01UL << 2)))
+#define ST_SNGF_EXECUTING(obj)                  ((obj)->ST=(unit32_t)(((obj)->ST & ~ST_PMDF_MASK) | (0x01UL << 2)))
+
+#define ST_CNTF_STOP(obj)                       ((obj)->ST=(unit32_t)(((obj)->ST & ~ST_PMDF_MASK) | (0x01UL << 3)))
+#define ST_CNTF_EXECUTING(obj)                  ((obj)->ST=(unit32_t)(((obj)->ST & ~ST_PMDF_MASK) | (0x01UL << 3)))
+
+#define ST_ADBF_STOP(obj)                       ((obj)->ST=(unit32_t)(((obj)->ST & ~ST_PMDF_MASK) | (0x01UL << 7)))
+#define ST_ADBF_EXECUTING(obj)                  ((obj)->ST=(unit32_t)(((obj)->ST & ~ST_PMDF_MASK) | (0x01UL << 7)))
+ 
 /* Conversion Clock Setting Register */
 #define CLK_VADCLK_ADCLK4(obj)                  ((obj)->CLK = (uint32_t)(((obj)->CLK & ~CLK_VADCLK_MASK) | 0x00UL))
 #define CLK_VADCLK_ADCLK8(obj)                  ((obj)->CLK = (uint32_t)(((obj)->CLK & ~CLK_VADCLK_MASK) | 0x01UL))
@@ -167,8 +190,7 @@ extern "C" {
 #define CMPCR0_CMPCND0_CONTINUOUS(obj)          ((obj)->CMPCR0 = (uint32_t)(((obj)->CMPCR0 & ~CMPCR0_CMPCND0_MASK) | (0x00UL << 6)))
 #define CMPCR0_CMPCND0_ACCUMULATED(obj)         ((obj)->CMPCR0 = (uint32_t)(((obj)->CMPCR0 & ~CMPCR0_CMPCND0_MASK) | (0x01UL << 6)))
 
-#define CMPCR0_CMPCNT0_CONTINUOUS(obj)          ((obj)->CMPCR0 = (uint32_t)(((obj)->CMPCR0 & ~CMPCR0_CMPCNT0_MASK) | (0x00UL << 8)))
-#define CMPCR0_CMPCNT0_ACCUMULATED(obj)         ((obj)->CMPCR0 = (uint32_t)(((obj)->CMPCR0 & ~CMPCR0_CMPCNT0_MASK) | (0x01UL << 8)))
+#define CMPCR0_CMPCNT0(obj, param)              ((obj)->CMPCR0 = (uint32_t)(((obj)->CMPCR0 & ~CMPCR0_CMPCNT0_MASK) | ((param) << 8)))
 
 /* Monitor Function Setting Register 1 */
 #define CMPCR1_REGS1(obj, param)                ((obj)->CMPCR1 = (uint32_t)(((obj)->CMPCR1 & ~CMPCR1_REGS1_MASK) | (param)))
@@ -189,7 +211,7 @@ extern "C" {
 /* AIN Sampling Time Selection Register */
 #define EXAZSEL_EXAZSEL(obj, param)             ((obj)->EXAZSEL = (uint32_t)(param))
 
-/* PMD Trigger Program Nummber Selection Register 0 Mask */
+/* PMD Trigger Program Nummber Selection Register 0*/
 #define PSEL0_PMDS0(obj, param)                 ((obj)->PSEL0 = (uint32_t)(((obj)->PSEL0 & ~PSEL0_PMDS0_MASK) | (param)))
 
 #define PSEL0_PENS0_DISABLE(obj)                ((obj)->PSEL0 = (uint32_t)(((obj)->PSEL0 & ~PSEL0_PENS0_MASK) | (0x00UL << 7)))

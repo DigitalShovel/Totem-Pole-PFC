@@ -19,14 +19,14 @@
 
 
 /*  Number of PWM phases: 0x00 -> None | 0x01 -> One | 0x02 -> Two | 0x03 - Three  */
-#define PMD0_PHASE_Val                      (uint8_t) 0x02
-#define PMD1_PHASE_Val                      (uint8_t) 0x00
+#define PMD0_PHASE_Val                      (uint8_t) 0x01
+#define PMD1_PHASE_Val                      (uint8_t) 0x01
 #define PMD2_PHASE_Val                      (uint8_t) 0x01
 
 /*  True = Will use the compliment pin for each phase | False = Will not use    */
 #define PMD0_PHASE_COMPLIMENT               (bool) true
-#define PMD1_PHASE_COMPLIMENT               (bool) false
-#define PMD2_PHASE_COMPLIMENT               (bool) false
+#define PMD1_PHASE_COMPLIMENT               (bool) true
+#define PMD2_PHASE_COMPLIMENT               (bool) true
 
 
 /*===================================================================*

@@ -309,7 +309,7 @@ extern "C" {
 #define OVVCR_OVVCNT(obj, param)                    ((obj)->OVVCR = (uint32_t)(((obj)->OVVCR & ~OVVCR_OVVCNT_MASK) | ((param) << 8)))
 
 #define OVVCR_OVVRSMD_AUTO(obj)                     ((obj)->OVVCR = (uint32_t)(((obj)->OVVCR & ~OVVCR_OVVRSMD_MASK) | (0x00U << 15)))
-#define OVVCR_OVVRSMD_PROTECT(obj)                     ((obj)->OVVCR = (uint32_t)(((obj)->OVVCR & ~OVVCR_OVVRSMD_MASK) | (0x01U << 15)))
+#define OVVCR_OVVRSMD_PROTECT(obj)                  ((obj)->OVVCR = (uint32_t)(((obj)->OVVCR & ~OVVCR_OVVRSMD_MASK) | (0x01U << 15)))
 
 /* PMD Dead Time Register */
 #define DTR_DTR(obj, param)                         ((obj)->DTR = (uint32_t)(param))
